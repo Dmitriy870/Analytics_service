@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "analytics-service"
+version = "0.1.0"
+description = ""
+authors = ["Dmitriy <pilevichdima20@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.7"
+motor = "^3.6.1"
+pydantic = "^2.10.5"
+aiokafka = "^0.12.0"
+pydantic-settings = "^2.7.1"
+pre-commit = "^4.1.0"
+black = "^25.1.0"
+isort = "^6.0.0"
+uvicorn = "^0.34.0"
+confluent-kafka = "^2.8.0"
+aiohttp = "^3.11.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: analytics_mongo
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - core_network
+
+  analytics:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: analytics_service
+    environment:
+      MONGO_URI: ${MONGO_URI}
+      KAFKA_BROKER: ${KAFKA_BROKER}
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "8002:8000"
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    networks:
+      - core_network
+
+networks:
+  core_network:
+    external: true
+
+volumes:
+  mongo_data:
